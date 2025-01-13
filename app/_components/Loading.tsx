@@ -1,17 +1,18 @@
-import { colors } from "@/lib/util";
+import { colors, GroupType } from "@/lib/util";
 import { useEffect, useState } from "react";
 
-const Loading = () => {
+const Loading = ({group}: {group: GroupType}) => {
   const [loading, setLoading] = useState(true);
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
 
   useEffect(() => {
+    setLoading(true)
     setCurrentColorIndex(Math.floor(Math.random() * colors.length));
     const id = setTimeout(() => {
       setLoading(false);
     }, 700);
     return () => clearTimeout(id);
-  }, []);
+  }, [group]);
 
   return (
     <div
