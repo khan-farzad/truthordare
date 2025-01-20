@@ -6,6 +6,7 @@ import AddNew from "./_components/AddNew";
 import Button from "./_components/Button";
 import Loading from "./_components/Loading";
 import SwitchRoom from "./_components/SwitchRoom";
+import Chooser from "./_components/Chooser";
 import { ImEvil } from "react-icons/im";
 import { CgArrowsExchangeAltV } from "react-icons/cg";
 import { BsEmojiSmileUpsideDown } from "react-icons/bs";
@@ -16,6 +17,7 @@ const Home = () => {
   const [showCard, setShowCard] = useState("");
   const [showAddCard, setShowAddCard] = useState(false);
   const [showSwitchRoomCard, setShowSwitchRoomCard] = useState(false);
+  const [isChooserModalOpen, setIsChooserModalOpen] = useState<boolean>(false);
   return (
     <div className="h-dvh w-full overflow-hidden relative">
       <Loading group={group} />
@@ -34,6 +36,13 @@ const Home = () => {
           </p>
           <IoIosArrowDown className="size-5" />
         </div>
+        <div className="flex items-center">
+        <button
+          onClick={() => setIsChooserModalOpen(true)}
+          className="text-indigo-500 m-2"
+          >
+          Chooser
+        </button>
         <button
           onClick={() => {
             setShowCard("");
@@ -41,9 +50,10 @@ const Home = () => {
             setShowSwitchRoomCard(false);
           }}
           className="text-indigo-500"
-        >
+          >
           <IoIosAddCircleOutline className="size-8"/>
         </button>
+        </div>
       </div>
       <div className="flex flex-col p-24 px-4 jusify-between h-dvh items-center">
         <div className="flex-center flex-col gap-8">
@@ -86,6 +96,11 @@ const Home = () => {
         setGroup={setGroup}
         showSwitchRoomCard={showSwitchRoomCard}
         setShowSwitchRoomCard={setShowSwitchRoomCard}
+      />
+      <Chooser
+        isOpen={isChooserModalOpen}
+        onClose={() => setIsChooserModalOpen(false)}
+        url="https://chooser.kuehle.me/"
       />
     </div>
   );
